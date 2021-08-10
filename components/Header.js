@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 import {
 	SearchIcon,
@@ -15,6 +16,7 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
 
 const Header = () => {
+	const router = useRouter();
 	const [searchInput, setSearchInput] = useState("");
 	const [numberInput, setNumberInput] = useState(1);
 	const [startDate, setStartDate] = useState(new Date());
@@ -36,6 +38,9 @@ const Header = () => {
 			{/* Left */}
 			<div className='relative flex items-center h-10 md:h-12 cursor-pointer my-auto'>
 				<Image
+					onClick={() => {
+						router.push("/");
+					}}
 					src='https://links.papareact.com/qd3'
 					layout='fill'
 					objectFit='contain'
@@ -93,7 +98,11 @@ const Header = () => {
 							onClick={() => setSearchInput("")}>
 							Cancel
 						</button>
-						<button className='mt-5 text-[#FD5B61] border border-[#FD5B61] hover:bg-[#fd5b61] hover:text-white transition duration-100 ease-in-out h-12 w-[150px] rounded-lg'>
+						<button
+							className='mt-5 text-[#FD5B61] border border-[#FD5B61] hover:bg-[#fd5b61] hover:text-white transition duration-100 ease-in-out h-12 w-[150px] rounded-lg'
+							onClick={() => {
+								router.push("/search");
+							}}>
 							Search
 						</button>
 					</div>
