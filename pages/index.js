@@ -1,4 +1,5 @@
 import Head from "next/head";
+import HeroImage from "../components/HeroImage";
 
 import Header from "../components/Header";
 
@@ -14,6 +15,7 @@ export default function Home() {
 			<Header />
 
 			{/* Banner */}
+			<HeroImage />
 		</div>
 	);
 }
