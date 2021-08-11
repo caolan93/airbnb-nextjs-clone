@@ -35,10 +35,10 @@ export default function Home({ exploreData, cardsData }) {
 						/>
 					))}
 				</div>
-				<section>
+				<section className=' bg-white'>
 					<h2 className='text-4-xl font-semibold py-8'>Live Anywhere</h2>
 
-					<div className='flex space-x-3 overflow-x-scroll scrollbar-hide p-3 -ml-3'>
+					<div className='flex  space-x-3 overflow-x-scroll scrollbar-hide p-3 '>
 						{cardsData.map((item) => (
 							<MediumCard
 								key={cardsData.indexOf(item)}

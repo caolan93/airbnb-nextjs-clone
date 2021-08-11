@@ -22,7 +22,7 @@ const InfoCard = ({
 	};
 
 	return (
-		<div className='flex cursor-pointer mb-1 hover:shadow-lg py-7 px-2 rounded-2xl hover:opacity-80 transition duration-200 ease-out '>
+		<div className='flex flex-col sm:flex-row cursor-pointer mb-1 hover:shadow-lg py-7 px-2 rounded-2xl hover:opacity-80 transition duration-200 ease-out '>
 			<div className='relative h-24 w-40 md:h-52 md:w-80 flex-shrink-0'>
 				<Image
 					className='relative rounded-2xl'
@@ -32,7 +32,7 @@ const InfoCard = ({
 					alt={title}
 				/>
 			</div>
-			<div className='flex flex-col flex-grow pl-5'>
+			<div className='flex flex-col flex-grow sm:pl-5'>
 				<div className='flex justify-between items-center'>
 					<p>{location}</p>
 					{liked ? (
