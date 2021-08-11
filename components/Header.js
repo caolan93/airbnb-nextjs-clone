@@ -18,19 +18,31 @@ import { DateRangePicker } from "react-date-range";
 const Header = () => {
 	const router = useRouter();
 	const [searchInput, setSearchInput] = useState("");
-	const [numberInput, setNumberInput] = useState(1);
+	const [numberOfGuests, setNumberOfGuests] = useState(1);
 	const [startDate, setStartDate] = useState(new Date());
 	const [endDate, setEndDate] = useState(new Date());
-
-	const selectionRange = {
-		startDate: new Date(),
-		endDate: new Date(),
-		key: "selection",
-	};
 
 	const handleSelect = (ranges) => {
 		setStartDate(ranges.selection.startDate);
 		setEndDate(ranges.selection.endDate);
+	};
+
+	const selectionRange = {
+		startDate,
+		endDate,
+		key: "selection",
+	};
+
+	const handleSearch = () => {
+		router.push({
+			pathname: "/search",
+			query: {
+				location: searchInput,
+				startDate: startDate.toISOString(),
+				endDate: startDate.toISOString(),
+				numberOfGuests,
+			},
+		});
 	};
 
 	return (
@@ -87,9 +99,9 @@ const Header = () => {
 						<input
 							className=' w-12 pl-2 outline-none text-[#FD5B61]'
 							type='number'
-							value={numberInput}
+							value={numberOfGuests}
 							min={1}
-							onChange={(e) => setNumberInput(e.target.value)}
+							onChange={(e) => setNumberOfGuests(e.target.value)}
 						/>
 					</div>
 					<div className='flex justify-center items-center space-x-1'>
@@ -100,9 +112,7 @@ const Header = () => {
 						</button>
 						<button
 							className='mt-5 text-[#FD5B61] border border-[#FD5B61] hover:bg-[#fd5b61] hover:text-white transition duration-100 ease-in-out h-12 w-[150px] rounded-lg'
-							onClick={() => {
-								router.push("/search");
-							}}>
+							onClick={handleSearch}>
 							Search
 						</button>
 					</div>
