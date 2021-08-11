@@ -4,29 +4,32 @@ import Header from "../components/Header";
 import { useRouter } from "next/router";
 
 import { format } from "date-fns";
+import InfoCard from "../components/InfoCard";
 
-const Search = () => {
+const Search = ({ searchResults }) => {
 	const router = useRouter();
 
 	const { location, startDate, endDate, numberOfGuests } = router.query;
 
-	console.log(`this is ${startDate}`);
-	console.log(`this is ${endDate}`);
+	const formatStartDate = format(new Date(startDate), "dd MMMM yy");
 
-	const formatStartDate = format(new Date(startDate), "dd/MMMM/yy");
+	const formatEndDate = format(new Date(endDate), "dd MMMM yy");
 
-	console.log(`this is ${formatStartDate}`);
-	// const formatEndDate = format(new Date(endDate), "dd MMMM yy");
-
-	// const range = `${formatStartDate} to ${formatEndDate}`;
+	const range = `${formatStartDate} - ${formatEndDate}`;
 
 	return (
 		<div>
-			<Header />
+			<Header
+				placeholder={`${location} | ${range} | ${numberOfGuests} ${
+					numberOfGuests > 1 ? "people" : "person"
+				}`}
+			/>
 
 			<main className='flex mt-10 '>
 				<section className='flex-grow pt-14 px-6'>
-					<p>{/* 300+ stays from {range} for {numberOfGuests} guests */}</p>
+					<p>
+						300+ stays {range} for {numberOfGuests} guests
+					</p>
 
 					<h1 className='text-3xl font-semibold mt-2 mb-6'>
 						Stays in {location}
@@ -39,6 +42,21 @@ const Search = () => {
 						<p className='button'>Room and Beds</p>
 						<p className='button'>More filters</p>
 					</div>
+
+					<div className='flex flex-col'>
+						{searchResults.map((item) => (
+							<InfoCard
+								key={searchResults.indexOf(item)}
+								img={item.img}
+								title={item.title}
+								description={item.description}
+								location={item.location}
+								total={item.total}
+								price={item.price}
+								star={item.star}
+							/>
+						))}
+					</div>
 				</section>
 			</main>
 
@@ -48,3 +66,15 @@ const Search = () => {
 };
 
 export default Search;
+
+export async function getServerSideProps() {
+	const searchResults = await fetch("https://links.papareact.com/isz").then(
+		(res) => res.json()
+	);
+
+	return {
+		props: {
+			searchResults,
+		},
+	};
+}
