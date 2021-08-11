@@ -12,10 +12,11 @@ const Map = () => {
 	});
 
 	const API_KEY = process.env.API_KEY;
+
 	return (
 		<ReactMapGL
 			mapStyle='mapbox://styles/caolannn93/cks7tzp52d53v18nxfp50jy33'
-			mapboxApiAccessToken={API_KEY}
+			mapboxApiAccessToken='pk.eyJ1IjoiY2FvbGFubm45MyIsImEiOiJja3M3djVobm8xZ3I5Mm5waHFiM2ZuMDdhIn0.JMIS2W6KjYypLN5CuqrGBg'
 			{...viewport}></ReactMapGL>
 	);
 };
