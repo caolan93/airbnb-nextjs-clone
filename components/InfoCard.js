@@ -23,7 +23,7 @@ const InfoCard = ({
 
 	return (
 		<div className='flex flex-col sm:flex-row cursor-pointer mb-1 hover:shadow-lg py-7 px-2 rounded-2xl hover:opacity-80 transition duration-200 ease-out '>
-			<div className='relative h-24 w-40 md:h-52 md:w-80 flex-shrink-0'>
+			<div className=' h-24 w-40 md:h-52 md:w-80 flex-shrink-0'>
 				<Image
 					className='relative rounded-2xl'
 					objectFit='cover'
